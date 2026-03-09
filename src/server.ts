@@ -1,5 +1,6 @@
 import "reflect-metadata";
 import "dotenv/config";
+import "./config/redis.js";
 
 import http from "http";
 import app from "./app.js";

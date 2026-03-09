@@ -14,37 +14,37 @@ export class User {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: "varchar", unique: true })
   email!: string;
 
-  @Column({ unique: true })
+  @Column({ type: "varchar", unique: true })
   username!: string;
 
-  @Column()
+  @Column({ type: "varchar" })
   password!: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   bio?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   avatarUrl?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   coverUrl?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   github?: string;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   website?: string;
 
   @Column("text", { array: true, default: [] })
   skills!: string[];
 
-  @Column({ default: false })
+  @Column({ type: "boolean", default: false })
   isPremium!: boolean;
 
-  @Column({ nullable: true })
+  @Column({ type: "varchar", nullable: true })
   stripeCustomerId?: string;
 
   @CreateDateColumn()
