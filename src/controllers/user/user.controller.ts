@@ -6,43 +6,43 @@ export class UserController {
 
   async getUserProfile(req: Request, res: Response) {
     try {
-      const user = await this.userService.getUserProfile(+req.params.id);
+      const userId = Array.isArray(req.params.id)
+        ? req.params.id[0]
+        : req.params.id;
+      const user = await this.userService.getUserProfile(userId);
       res.status(200).json(user);
     } catch (error) {
-      return res
-        .status(404)
-        .json({
-          error: error instanceof Error ? error.message : "User not found",
-        });
+      return res.status(404).json({
+        error: error instanceof Error ? error.message : "User not found",
+      });
     }
   }
 
   async updateUserProfile(req: Request, res: Response) {
     try {
-      const user = await this.userService.updateUserProfile(
-        +req.params.id,
-        req.body,
-      );
+      const userId = Array.isArray(req.params.id)
+        ? req.params.id[0]
+        : req.params.id;
+      const user = await this.userService.updateUserProfile(userId, req.body);
       res.status(200).json(user);
     } catch (error) {
-      return res
-        .status(404)
-        .json({
-          error: error instanceof Error ? error.message : "User not found",
-        });
+      return res.status(404).json({
+        error: error instanceof Error ? error.message : "User not found",
+      });
     }
   }
 
   async deleteUserProfile(req: Request, res: Response) {
     try {
-      const response = await this.userService.deleteUserProfile(+req.params.id);
+      const userId = Array.isArray(req.params.id)
+        ? req.params.id[0]
+        : req.params.id;
+      const response = await this.userService.deleteUserProfile(userId);
       res.status(204).send(response.message);
     } catch (error) {
-      return res
-        .status(404)
-        .json({
-          error: error instanceof Error ? error.message : "User not found",
-        });
+      return res.status(404).json({
+        error: error instanceof Error ? error.message : "User not found",
+      });
     }
   }
 }

@@ -5,9 +5,11 @@ import {
   UpdateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
+  OneToMany,
 } from "typeorm";
 
 import bcrypt from "bcrypt";
+import { Post } from "./post.entity.js";
 
 @Entity("users")
 export class User {
@@ -52,6 +54,9 @@ export class User {
 
   @UpdateDateColumn()
   updatedAt!: Date;
+
+  @OneToMany(() => Post, (post) => post.author)
+  posts!: Post[];
 
   /*
    * Hash password before insert
